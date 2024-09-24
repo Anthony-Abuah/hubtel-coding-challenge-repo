@@ -23,7 +23,7 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          margin: const EdgeInsets.fromLTRB(15, 50, 15, 10),
+          margin: const EdgeInsets.fromLTRB(15, 50, 15, 60),
           child: Column(
             children: [
 

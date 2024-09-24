@@ -63,7 +63,7 @@ List<Transaction> transactions = [
       image: "mtn_momo",
       number: "0241234567",
       reason: "Personal",
-      reasonDescription: "Cool your heart wai",
+      reasonDescription: "",
       date: "May 23, 2022",
       isSuccess: true
   ),
