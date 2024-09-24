@@ -105,10 +105,10 @@ class TransactionCard extends StatelessWidget {
                   const SizedBox(width: 4),
                   Text(reason, style: AppWidget.transactionReason()),
                   const SizedBox(width: 4),
-                  const Icon(Icons.circle, size: 5, color: Colors.black26,),
+                  reasonDescription.isEmpty ? const SizedBox(width: 5,) : const Icon(Icons.circle, size: 5, color: Colors.black26,),
                   const SizedBox(width: 4),
                   Text(reasonDescription, style: AppWidget.transactionReason()),
-                  reasonDescription.isEmpty ? SizedBox(width: 10,): Spacer(),
+                  reasonDescription.isEmpty ? const SizedBox(width: 10,): const Spacer(),
                   Icon(Icons.star, size: 20, color: Colors.yellow[700],),
 
 

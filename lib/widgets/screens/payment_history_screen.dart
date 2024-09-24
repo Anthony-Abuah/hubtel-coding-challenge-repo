@@ -23,13 +23,14 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          margin: const EdgeInsets.fromLTRB(15, 50, 15, 60),
+          margin: const EdgeInsets.fromLTRB(0, 50, 0, 10),
           child: Column(
             children: [
 
               Container(
                 height: 50,
-                padding: EdgeInsets.all(1),
+                margin: const EdgeInsets.symmetric(horizontal: 15),
+                padding: const EdgeInsets.all(1),
                 decoration: const BoxDecoration(
                   color: Colors.grey,
                   borderRadius: BorderRadius.all(Radius.circular(8))
@@ -60,17 +61,20 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
                 ),
               ),
 
-              Divider(height: 50,),
+              const Divider(height: 60,),
 
               //const SizedBox(height: 30),
 
-              const Row(
-                children: [
-                  // Search Bar
-                  Expanded(child: SearchCard()),
-                  SizedBox(width: 10,),
-                  Icon(Icons.tune, color: Colors.black87, size: 30,),
-                ],
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 15),
+                child: const Row(
+                  children: [
+                    // Search Bar
+                    Expanded(child: SearchCard()),
+                    SizedBox(width: 10,),
+                    Icon(Icons.tune, color: Colors.black87, size: 30,),
+                  ],
+                ),
               ),
 
 
@@ -86,12 +90,12 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                              margin: const EdgeInsets.only(top: 20, bottom: 10),
+                              margin: const EdgeInsets.only(left: 15, right: 15, top: 20, bottom: 10),
                               child: DateCard(date: date)),
                           Column(
                             children: groupedTransactions[date]!.map((transaction){
                               return Container(
-                                margin: const EdgeInsets.symmetric(vertical: 8),
+                                margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
                                 child: TransactionCard(
                                   name: transaction.name,
                                   amount: transaction.amount,
@@ -110,7 +114,7 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
                     }).toList(),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -124,7 +128,7 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const Icon(Icons.add_circle, color: Colors.white,),
+              const Icon(Icons.add_circle, color: Colors.white, size: 30,),
               const SizedBox(width: 8),
               Text("SEND NEW",
                 style: AppWidget.floatingActionButtonText(),)
@@ -133,9 +137,10 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Colors.black87,
-          unselectedItemColor: Colors.black38,
-          currentIndex: currentItemIndex,
+        showUnselectedLabels: true,
+        selectedItemColor: Colors.black87,
+        unselectedItemColor: Colors.black38,
+        currentIndex: currentItemIndex,
           onTap: (index){
             setState(() {
               currentItemIndex = index;
@@ -143,9 +148,9 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
           },
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: ""),
-            BottomNavigationBarItem(icon: Icon(Icons.star), label: "Favorite"),
+            BottomNavigationBarItem(icon: Icon(Icons.phone_android_sharp), label: "Send"),
             BottomNavigationBarItem(icon: Icon(Icons.list_alt_outlined), label: "History"),
-            BottomNavigationBarItem(icon: Icon(Icons.airplane_ticket), label: "Ticket"),
+            BottomNavigationBarItem(icon: Icon(Icons.calendar_month), label: "Schedule"),
           ]
       ),
     );
