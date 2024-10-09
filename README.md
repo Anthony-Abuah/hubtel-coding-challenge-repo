@@ -4,7 +4,7 @@ A new Flutter project.
 
 ## Getting Started
 Below are screenshots of the test
-![hubtel_project_collage](https://github.com/user-attachments/assets/dd98d3bd-b6a8-4493-a4b3-667f4e348c9d)
+![hubtel_project_collage](https://github.com/user-attachments/assets/25f1893b-797a-46ed-b0a1-6f89f1ab3917)
 Image1: When the code is run
 Image2: When we scroll upwards
 Image3: When we switch to the transaction tab
