@@ -16,7 +16,7 @@ https://github.com/user-attachments/assets/b1e27c43-9c83-4cfd-a2fc-3aec772f08b8
 This is a simple screen recording of the project and it involves switching the tabs to show the circular progress indicator
 
 
-https://github.com/user-attachments/assets/06cc0b67-298a-4bfb-8fe5-5453efeb590f
+https://github.com/user-attachments/assets/cd6e1e8f-f2ff-4364-a9af-72a2b3290764
 
 
 This screen recording shows the hiding of the FAB when scrolling upwards in order to see the bottom values,
