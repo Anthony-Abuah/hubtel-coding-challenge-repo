@@ -11,9 +11,15 @@ Image3: When we switch to the transaction tab
 
 ## Screen Recordings
 https://github.com/user-attachments/assets/4efb3660-445c-4962-afc3-d5914792ce1b
+
+
 This is a simple screen recording of the project and it involves switching the tabs to show the circular progress indicator and the hiding of the FAB
 
+
+
 https://github.com/user-attachments/assets/06cc0b67-298a-4bfb-8fe5-5453efeb590f
+
+
 This screen recording shows the implementation of the search bar as well as the other features listed above
 
 
