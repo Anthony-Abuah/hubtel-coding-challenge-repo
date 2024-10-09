@@ -10,7 +10,7 @@ Image2: When we scroll upwards
 Image3: When we switch to the transaction tab
 
 ## Screen Recordings
-https://github.com/user-attachments/assets/308aa48d-842d-407e-951d-a5de07313a78
+[https://github.com/user-attachments/assets/308aa48d-842d-407e-951d-a5de07313a78]
 This is a simple screen recording of the project and it involves switching the tabs to show the circular progress indicator and the hiding of the FAB
 
 https://github.com/user-attachments/assets/06cc0b67-298a-4bfb-8fe5-5453efeb590f
