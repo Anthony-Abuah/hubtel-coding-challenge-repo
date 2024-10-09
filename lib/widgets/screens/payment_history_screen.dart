@@ -76,7 +76,7 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
             },
             items: [
               BottomNavigationBarItem(icon: SvgPicture.asset(AppDrawables.icHome), label: ""),
-              BottomNavigationBarItem(icon: SvgPicture.asset(AppDrawables.icSend), label: Constants.successful),
+              BottomNavigationBarItem(icon: SvgPicture.asset(AppDrawables.icSend), label: Constants.send),
               BottomNavigationBarItem(icon: SvgPicture.asset(AppDrawables.icHistory), label: Constants.history),
               BottomNavigationBarItem(icon: SvgPicture.asset(AppDrawables.icSchedule), label: Constants.schedule),
 
