@@ -10,7 +10,7 @@ Image2: When we scroll upwards
 Image3: When we switch to the transaction tab
 
 ## Screen Recordings
-https://github.com/user-attachments/assets/b1e27c43-9c83-4cfd-a2fc-3aec772f08b8
+https://github.com/user-attachments/assets/f5368a13-ccd0-4ad9-ad7a-4090820402a2
 
 
 This is a simple screen recording of the project and it involves switching the tabs to show the circular progress indicator
