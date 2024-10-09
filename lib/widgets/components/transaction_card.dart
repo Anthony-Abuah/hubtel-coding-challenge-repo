@@ -95,7 +95,11 @@ class TransactionCard extends StatelessWidget {
               ],
             ),
 
-            Divider(height: 16, color: AppColors.greyBackground),
+            const SizedBox(height: 16),
+
+            Divider(height: 0, color: AppColors.greyBackground),
+
+            const SizedBox(height: 16),
 
             Row(
               children: [

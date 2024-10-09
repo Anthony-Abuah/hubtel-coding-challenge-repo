@@ -104,6 +104,7 @@ class _TransactionHistoryState extends State<TransactionHistory> {
               ],
             ),
           ),
+          const SizedBox(height: 8),
 
           Expanded(
             child: SingleChildScrollView(
