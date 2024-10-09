@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hubtel_coding_challenge/utils/app_drawables.dart';
 import 'package:hubtel_coding_challenge/widgets/components/transaction_status.dart';
-
-import '../../helper/app_widget_helper.dart';
+import '../../utils/app_colors.dart';
+import '../../utils/app_widget_helper.dart';
 
 class TransactionCard extends StatelessWidget {
   final String name;
@@ -18,107 +20,105 @@ class TransactionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          border: Border.all(color: Color.fromRGBO(220, 220, 220, 1)),
-          borderRadius: BorderRadius.all(Radius.circular(8))
+          border: Border.all(color: AppColors.greyBackground),
+          borderRadius: const BorderRadius.all(Radius.circular(10))
       ),
-      height: 155,
       width: double.infinity,
-      padding: const EdgeInsets.all(8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(time, style: AppWidget.transactionTime(),),
-          const SizedBox(height: 5),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Icon
-              Container(
-                margin: const EdgeInsets.only(top: 5, right: 5),
-                width: 30,
-                height: 30,
-                decoration: BoxDecoration(
-                    image: DecorationImage(image: AssetImage("images/$image.png")),
-                    shape: BoxShape.circle
-                ),
-              ),
+      padding: const EdgeInsets.all(16),
+      child:
 
-              // Name and Number
-              Expanded(
-                flex: 2,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(name,
-                      style: AppWidget.transactionName(),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 10),
-                    Text(number,
-                      style: AppWidget.transactionNumber(),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                ),
-              ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(time, style: AppTextStyles.transactionTime()),
 
-              const SizedBox(width: 5),
+            const SizedBox(height: 12),
 
-              // Transaction status and amount
-              Expanded(
-                flex: 1,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    status?  const IsSuccessful(): const IsFailure(),
-                    const SizedBox(height: 10),
-                    Text("GHS $amount",
-                      style: AppWidget.transactionAmount(),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                ),
-              ),
-
-            ],
-          ),
-
-          const Spacer(),
-
-          Column(
-            children: [
-              const Divider(height: 16, color: Color.fromRGBO(200, 200, 200, 1),),
-              Row(
-                children: [
-                  Container(
-                      width: 25,
-                      height: 25,
-                      decoration: BoxDecoration(
-                          color: Colors.deepPurple[200],//Color.fromRGBO(200, 200, 200, 1),
-                          shape: BoxShape.circle
-                      ),
-                      child: const Icon(Icons.person, color: Colors.deepPurple, size: 15,)
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Icon
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(image: AssetImage(image)),
+                      shape: BoxShape.circle
                   ),
-                  const SizedBox(width: 4),
-                  Text(reason, style: AppWidget.transactionReason()),
-                  const SizedBox(width: 4),
-                  const Icon(Icons.circle, size: 5, color: Colors.black26,),
-                  const SizedBox(width: 4),
-                  Text(reasonDescription, style: AppWidget.transactionReason()),
-                  reasonDescription.isEmpty ? SizedBox(width: 10,): Spacer(),
-                  Icon(Icons.star, size: 20, color: Colors.yellow[700],),
+                ),
 
+                const SizedBox(width: 8),
 
-                ],
-              )
-            ],
-          )
-          // Horizontal Divider
-        ],
-      ),
+                Expanded(
+                  child: Column(
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Text(name,
+                              style: AppTextStyles.transactionName(),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+
+                          IsSuccessful(success: status)
+
+                        ],
+                      ),
+
+                      const SizedBox(height: 4),
+
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(number,
+                            style: AppTextStyles.transactionNumber(),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+
+                          Text("GHS $amount",
+                            style: AppTextStyles.transactionAmount(),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+
+                        ],
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+
+            Divider(height: 16, color: AppColors.greyBackground),
+
+            Row(
+              children: [
+                Container(
+                    width: 25,
+                    height: 25,
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle
+                    ),
+                    child: SvgPicture.asset(AppDrawables.icPerson)
+                ),
+                const SizedBox(width: 8),
+                Text(reason, style: AppTextStyles.transactionReason()),
+                const SizedBox(width: 8),
+                reasonDescription.isNotEmpty ?  Icon(Icons.circle, size: 5, color: AppColors.dotSeperator): const SizedBox(),
+                const SizedBox(width: 8),
+                Text(reasonDescription, style: AppTextStyles.transactionReason()),
+                reasonDescription.isEmpty ? const SizedBox(): const Spacer(),
+                status? Icon(Icons.star, size: 20, color: AppColors.starBackground): const SizedBox(),
+              ],
+            )
+          ],
+        )
     );
   }
 }

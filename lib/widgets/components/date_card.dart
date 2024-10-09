@@ -1,9 +1,9 @@
-
-
-
 import 'package:flutter/material.dart';
+import 'package:hubtel_coding_challenge/utils/app_widget_helper.dart';
 
-import '../../helper/app_widget_helper.dart';
+import '../../utils/app_colors.dart';
+
+
 
 class DateCard extends StatelessWidget {
   final String date;
@@ -12,12 +12,12 @@ class DateCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-      decoration: const BoxDecoration(
-          color: Color.fromRGBO(220, 220, 220, 1),
-          borderRadius: BorderRadius.horizontal(left: Radius.circular(16), right: Radius.circular(16))
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+          color: AppColors.greyBackground,
+          borderRadius: const BorderRadius.horizontal(left: Radius.circular(12), right: Radius.circular(12))
       ),
-      child: Text(date, style: AppWidget.dateTextStyle(),),
+      child: Text(date, style: AppTextStyles.dateTextStyle()),
     );
   }
 }

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
-import '../../helper/app_widget_helper.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hubtel_coding_challenge/utils/app_drawables.dart';
+import 'package:hubtel_coding_challenge/utils/constants.dart';
+import 'package:hubtel_coding_challenge/widgets/components/transaction_history.dart';
 import '../../model/transaction.dart';
-import '../components/date_card.dart';
-import '../components/search_card.dart';
-import '../components/transaction_card.dart';
+import '../../utils/app_colors.dart';
+import '../../utils/app_widget_helper.dart';
 
 class PaymentHistoryScreen extends StatefulWidget {
   const PaymentHistoryScreen({super.key});
@@ -20,138 +22,66 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
   bool isTransactionSummary = false;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Container(
-          margin: const EdgeInsets.fromLTRB(0, 50, 0, 10),
-          child: Column(
-            children: [
-
-              Container(
-                height: 50,
-                margin: const EdgeInsets.symmetric(horizontal: 15),
-                padding: const EdgeInsets.all(1),
-                decoration: const BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.all(Radius.circular(8))
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+            backgroundColor: Colors.white,
+            bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(40),
+              child: Container(
+                height: 36,
+                margin: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.all(2),
+                decoration: BoxDecoration(
+                    color: AppColors.greyBackground,
+                    borderRadius: const BorderRadius.all(Radius.circular(6))
                 ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        height: 48,
-                        decoration:  BoxDecoration(
-                        color: isHistory? Colors.white : Colors.grey[700],
-                            borderRadius: BorderRadius.all(Radius.circular(8))
-                        ),
-                        child: Center(child: Text("History", style: AppWidget.transactionAmount(),))),
+                child: TabBar(
+                    dividerColor: Colors.transparent,
+                    labelStyle: AppTextStyles.selectedTabBar(),
+                    labelColor: Colors.black,
+                    indicatorColor: Colors.transparent,
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    unselectedLabelStyle: AppTextStyles.unSelectedTabBar(),
+                    unselectedLabelColor: Colors.black.withOpacity(0.20),
+                    labelPadding: const EdgeInsets.symmetric(horizontal: 4),
+                    indicator: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(6))
                     ),
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        height: 48,
-                        decoration:  BoxDecoration(
-                        color: isTransactionSummary? Colors.white : Colors.transparent,
-                            borderRadius: BorderRadius.all(Radius.circular(8))
-                        ),
-                        child: Center(child: Text("Transaction Summary", style: AppWidget.transactionAmount(),))),
-                    )
-                  ],
-                ),
+                    tabs: const [
+                      Text(Constants.history),
+                      Text(Constants.transactionSummary),
+                    ]),
               ),
-
-              const Divider(height: 60,),
-
-              //const SizedBox(height: 30),
-
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 15),
-                child: const Row(
-                  children: [
-                    // Search Bar
-                    Expanded(child: SearchCard()),
-                    SizedBox(width: 10,),
-                    Icon(Icons.tune, color: Colors.black87, size: 30,),
-                  ],
-                ),
-              ),
-
-
-
-              const SizedBox(height: 10),
-
-              // Transaction card
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: groupedTransactions.keys.map((date){
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                              margin: const EdgeInsets.only(left: 15, right: 15, top: 20, bottom: 10),
-                              child: DateCard(date: date)),
-                          Column(
-                            children: groupedTransactions[date]!.map((transaction){
-                              return Container(
-                                margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-                                child: TransactionCard(
-                                  name: transaction.name,
-                                  amount: transaction.amount,
-                                  image: transaction.image,
-                                  time: transaction.time,
-                                  number: transaction.number,
-                                  reason: transaction.reason,
-                                  status: transaction.isSuccess,
-                                  reasonDescription: transaction.reasonDescription,
-                                ),
-                              );
-                            }).toList(),
-                          )
-                        ],
-                      );
-                    }).toList(),
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
-      ),
+        body: const TabBarView(children: [
+          TransactionHistory(),
+          Center(child: Text(Constants.transactionSummary))
+        ]),
 
-      floatingActionButton: SizedBox(
-        height: 50.0,
-        width: 120.0,
-        child: FloatingActionButton(onPressed: () {  },
-          backgroundColor: const Color.fromRGBO(25, 210, 210, 1),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Icon(Icons.add_circle, color: Colors.white, size: 30,),
-              const SizedBox(width: 8),
-              Text("SEND NEW",
-                style: AppWidget.floatingActionButtonText(),)
-            ],
-          ),
+        bottomNavigationBar: BottomNavigationBar(
+          selectedLabelStyle: AppTextStyles.selectedBottomNavItem(),
+          unselectedLabelStyle: AppTextStyles.unSelectedBottomNavItem(),
+          showUnselectedLabels: true,
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.black.withOpacity(0.2),
+          currentIndex: currentItemIndex,
+            onTap: (index){
+              setState(() {
+                currentItemIndex = index;
+              });
+            },
+            items: [
+              BottomNavigationBarItem(icon: SvgPicture.asset(AppDrawables.icHome), label: ""),
+              BottomNavigationBarItem(icon: SvgPicture.asset(AppDrawables.icSend), label: Constants.successful),
+              BottomNavigationBarItem(icon: SvgPicture.asset(AppDrawables.icHistory), label: Constants.history),
+              BottomNavigationBarItem(icon: SvgPicture.asset(AppDrawables.icSchedule), label: Constants.schedule),
+
+            ]
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        showUnselectedLabels: true,
-        selectedItemColor: Colors.black87,
-        unselectedItemColor: Colors.black38,
-        currentIndex: currentItemIndex,
-          onTap: (index){
-            setState(() {
-              currentItemIndex = index;
-            });
-          },
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: ""),
-            BottomNavigationBarItem(icon: Icon(Icons.phone_android_sharp), label: "Send"),
-            BottomNavigationBarItem(icon: Icon(Icons.list_alt_outlined), label: "History"),
-            BottomNavigationBarItem(icon: Icon(Icons.calendar_month), label: "Schedule"),
-          ]
       ),
     );
   }

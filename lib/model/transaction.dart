@@ -1,5 +1,7 @@
 
 
+import 'package:hubtel_coding_challenge/utils/app_drawables.dart';
+
 class Transaction{
   final String name;
   final String amount;
@@ -28,9 +30,9 @@ class Transaction{
 List<Transaction> transactions = [
 
   Transaction(name: "Emmanuel Rockson Kwabena Uncle Ebo",
-      amount: "500.00",
+      amount: "500",
       time: "14: 45 GMT",
-      image: "mtn_momo",
+      image: AppDrawables.imgMomo,
       number: "0241234567",
       reason: "Personal",
       reasonDescription: "Cool your heart wai",
@@ -38,9 +40,9 @@ List<Transaction> transactions = [
       isSuccess: true
   ),
   Transaction(name: "Absa Bank",
-      amount: "500.00",
+      amount: "500",
       time: "14: 45 GMT",
-      image: "absa",
+      image: AppDrawables.imgAbsa,
       number: "0241234567",
       reason: "Personal",
       reasonDescription: "Cool your heart wai",
@@ -48,9 +50,9 @@ List<Transaction> transactions = [
       isSuccess: false
   ),
   Transaction(name: "Emmanuel Rockson",
-      amount: "500.00",
+      amount: "500",
       time: "14: 45 GMT",
-      image: "mtn_momo",
+      image: AppDrawables.imgMomo,
       number: "0241234567",
       reason: "Personal",
       reasonDescription: "Cool your heart wai",
@@ -58,9 +60,9 @@ List<Transaction> transactions = [
       isSuccess: true
   ),
   Transaction(name: "Emmanuel Rockson",
-      amount: "500.00",
+      amount: "500",
       time: "14: 45 GMT",
-      image: "mtn_momo",
+      image: AppDrawables.imgMomo,
       number: "0241234567",
       reason: "Personal",
       reasonDescription: "",

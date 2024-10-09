@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hubtel_coding_challenge/widgets/screens/loading.dart';
 import 'package:hubtel_coding_challenge/widgets/screens/payment_history_screen.dart';
 
@@ -16,6 +17,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
+        textTheme: GoogleFonts.nunitoSansTextTheme(),
+        appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
+        bottomAppBarTheme: const BottomAppBarTheme(color: Colors.white),
+        scaffoldBackgroundColor: Colors.white,
         // This is the theme of your application.
         //
         // TRY THIS: Try running your application with "flutter run". You'll see
@@ -36,7 +41,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: "/",
       routes: {
-        "/": (context) => const Loading(),
+        "/": (context) => const PaymentHistoryScreen(),
         "/payment_page": (context) => const PaymentHistoryScreen(),
       },
       //home: const PaymentHistoryScreen(),
